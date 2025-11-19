@@ -1,64 +1,122 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 
 export default function Home() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState({ state: "idle", message: "" });
+
+  const isLoading = status.state === "loading";
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    if (!email.trim()) {
+      setStatus({ state: "error", message: "Please enter a valid email." });
+      return;
+    }
+
+    setStatus({ state: "loading", message: "Adding you to the crew..." });
+
+    try {
+      const response = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: email.trim() }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data?.error || "We hit a snag. Try again soon.");
+      }
+
+      setStatus({
+        state: "success",
+        message:
+          data?.message ||
+          "Success! You're on the list. Check your inbox—and the spam folder—for the verification email and upcoming summaries.",
+      });
+      setEmail("");
+    } catch (error) {
+      setStatus({
+        state: "error",
+        message: error.message || "Something went wrong.",
+      });
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="relative min-h-screen overflow-hidden bg-slate-950 text-slate-100">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.15),_transparent_55%),radial-gradient(circle_at_bottom,_rgba(129,140,248,0.18),_transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,_rgba(255,255,255,0.28)_1px,_transparent_1px)] bg-[length:5rem_5rem] opacity-25" />
+
+      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-3xl flex-col justify-center px-6 py-16">
+        <section className="rounded-3xl border border-white/10 bg-white/[0.04] p-10 shadow-2xl backdrop-blur">
+          <p className="text-sm uppercase tracking-[0.3em] text-sky-300">
+            MoonDAO Weekly
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          <h1 className="mt-6 text-4xl font-semibold leading-tight sm:text-5xl">
+            Get Weekly MoonDAO Summaries.
+          </h1>
+          <p className="mt-4 text-lg text-slate-300">
+            AI-powered recaps of the Town Hall, straight to your inbox. Never
+            miss a mission update again.
+          </p>
+
+          <div className="mt-8 rounded-2xl border border-yellow-400/60 bg-yellow-500/10 px-6 py-4 text-yellow-100">
+            <p className="text-base font-semibold tracking-wide">
+              CHECK YOUR <span className="text-yellow-200">SPAM</span> FOLDER 🚨
+            </p>
+            <p className="mt-2 text-sm leading-6">
+              At this stage of the project, verification emails and weekly summaries
+              will most likely land in SPAM—grab them and move us to your main
+              inbox.
+            </p>
+          </div>
+
+          <form
+            onSubmit={handleSubmit}
+            className="mt-10 flex flex-col gap-3 sm:flex-row"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+            <label htmlFor="email" className="sr-only">
+              Email address
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="your-email@domain.com"
+              autoComplete="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              className="w-full rounded-full border border-white/10 bg-slate-900/80 px-6 py-4 text-base text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/40"
+              required
+              disabled={isLoading}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="inline-flex shrink-0 items-center justify-center rounded-full bg-sky-400 px-8 py-4 text-base font-semibold text-slate-900 transition hover:bg-sky-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-200 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isLoading ? "Joining..." : "Subscribe"}
+            </button>
+          </form>
+
+          <p
+            className="mt-4 text-sm text-slate-400"
+            aria-live="polite"
+            role="status"
           >
-            Documentation
-          </a>
-        </div>
+            {status.state === "idle" &&
+              "A free community project. No spam, ever. Unsubscribe anytime from any summary email."}
+            {status.state === "loading" && status.message}
+            {status.state === "success" && status.message}
+            {status.state === "error" && status.message}
+          </p>
+        </section>
       </main>
     </div>
   );
