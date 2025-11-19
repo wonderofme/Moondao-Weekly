@@ -50,9 +50,9 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0B0B19]">
-      {/* Ambient red/orange glow - bottom 1/2 of background */}
+      {/* Ambient red/orange glow - bottom 1/2 of background - stronger bottom */}
       <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[60vh] z-0">
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-[#ea580c]/20 via-[#ea580c]/5 to-transparent blur-3xl" />
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-[#ea580c]/50 via-[#ea580c]/10 to-transparent blur-3xl" />
       </div>
 
       <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-6 py-16">
