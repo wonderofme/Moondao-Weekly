@@ -21,10 +21,8 @@
 
 body {
   min-height: 100vh;
-  background-color: var(--moondao-midnight);
-  background-image: 
-    radial-gradient(ellipse at bottom right, rgba(234, 88, 12, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at top left, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
+  /* Top: Dark Indigo/Purple, Bottom: Deepest Black/Blue */
+  background: linear-gradient(180deg, #1e1b4b 0%, #020617 100%);
   background-attachment: fixed;
   color: var(--foreground);
 }

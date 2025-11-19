@@ -250,19 +250,19 @@ export default function AdminPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0B0B19]">
-      {/* Ambient red/orange glow at bottom right */}
+      {/* Ambient red/orange glow at bottom right - refined */}
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <div 
-          className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl"
+          className="absolute bottom-0 right-0 w-[800px] h-[600px] rounded-full blur-3xl opacity-40"
           style={{
-            background: 'radial-gradient(circle, rgba(234, 88, 12, 0.2) 0%, rgba(234, 88, 12, 0.1) 30%, transparent 70%)'
+            background: 'radial-gradient(circle at bottom right, #ea580c 0%, transparent 70%)'
           }}
         />
       </div>
 
       <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-6 py-16">
-        {/* Hero Card with Royal Blue to Violet gradient */}
-        <section className="rounded-2xl bg-gradient-to-r from-[#1e3a8a] via-[#4f46e5] to-[#6366f1] p-10 shadow-2xl" style={{ boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
+        {/* Hero Card with Top-to-Bottom Gradient */}
+        <section className="rounded-2xl bg-gradient-to-b from-[#4f46e5] to-[#0f172a] p-10 shadow-2xl" style={{ boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
               <span className="text-2xl">🌙</span>
