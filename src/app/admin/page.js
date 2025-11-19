@@ -250,14 +250,9 @@ export default function AdminPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0B0B19]">
-      {/* Ambient red/orange glow at bottom right - refined */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div 
-          className="absolute bottom-0 right-0 w-[800px] h-[600px] rounded-full blur-3xl opacity-40"
-          style={{
-            background: 'radial-gradient(circle at bottom right, #ea580c 0%, transparent 70%)'
-          }}
-        />
+      {/* Ambient red/orange glow - bottom 1/4 of background */}
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] z-0">
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-[#ea580c]/20 via-[#ea580c]/5 to-transparent blur-3xl" />
       </div>
 
       <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-6 py-16">
