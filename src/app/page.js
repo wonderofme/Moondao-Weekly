@@ -56,8 +56,8 @@ export default function Home() {
       </div>
 
       <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-6 py-16">
-        {/* Hero Card with Top-to-Bottom Gradient: Lighter Blue/Purple to Darker Blue */}
-        <section className="rounded-2xl bg-gradient-to-b from-[#4f46e5] to-[#0f172a] p-10 shadow-2xl" style={{ boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
+        {/* Main Content Card - Dark Mode style matching the "Abstract" section */}
+        <section className="rounded-2xl bg-[#0f172a]/80 backdrop-blur-xl border border-white/10 p-10 shadow-2xl" style={{ boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
           {/* MoonDAO branding */}
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
