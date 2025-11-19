@@ -1,11 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0e27;
+  --background: #0B0B19;
   --foreground: #ffffff;
-  --moondao-blue: #1e3a8a;
-  --moondao-purple: #6366f1;
-  --moondao-orange: #f97316;
+  --moondao-midnight: #0B0B19;
+  --moondao-royal-blue: #1e3a8a;
+  --moondao-violet: #6366f1;
+  --moondao-electric-purple: #8b5cf6;
+  --moondao-indigo: #4f46e5;
+  --moondao-burnt-orange: #ea580c;
+  --moondao-muted-gray: #64748b;
 }
 
 @theme inline {
@@ -17,7 +21,10 @@
 
 body {
   min-height: 100vh;
-  background: linear-gradient(135deg, #0a0e27 0%, #1e1b4b 50%, #312e81 100%);
+  background-color: var(--moondao-midnight);
+  background-image: 
+    radial-gradient(ellipse at bottom right, rgba(234, 88, 12, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at top left, rgba(139, 92, 246, 0.1) 0%, transparent 50%);
   background-attachment: fixed;
   color: var(--foreground);
 }

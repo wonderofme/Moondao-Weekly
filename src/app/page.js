@@ -49,43 +49,47 @@ export default function Home() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* MoonDAO gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e27] via-[#1e1b4b] to-[#312e81]" />
-      
-      {/* Organic shape overlay similar to MoonDAO proposal pages */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-gradient-to-br from-indigo-800/20 to-purple-800/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-purple-900/25 to-blue-900/25 rounded-full blur-3xl" />
+    <div className="relative min-h-screen overflow-hidden bg-[#0B0B19]">
+      {/* Ambient red/orange glow at bottom right */}
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+        <div 
+          className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl"
+          style={{
+            background: 'radial-gradient(circle, rgba(234, 88, 12, 0.2) 0%, rgba(234, 88, 12, 0.1) 30%, transparent 70%)'
+          }}
+        />
       </div>
 
       <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-6 py-16">
-        <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-10 shadow-2xl backdrop-blur-xl">
+        {/* Hero Card with Royal Blue to Violet gradient */}
+        <section className="rounded-2xl bg-gradient-to-r from-[#1e3a8a] via-[#4f46e5] to-[#6366f1] p-10 shadow-2xl" style={{ boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
           {/* MoonDAO branding */}
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
               <span className="text-2xl">🌙</span>
             </div>
-            <p className="text-sm uppercase tracking-[0.3em] text-blue-300 font-semibold">
+            <p className="text-sm uppercase tracking-[0.3em] text-white/80 font-semibold">
               MoonDAO Weekly
             </p>
           </div>
           
-          <h1 className="text-5xl font-bold leading-tight sm:text-6xl bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+          <h1 className="text-5xl font-bold leading-tight sm:text-6xl text-white mb-4">
             Get Weekly MoonDAO Summaries
           </h1>
-          <p className="mt-4 text-xl text-blue-100/90">
+          <p className="text-lg text-white/90 leading-relaxed">
             AI-powered recaps of the Town Hall, straight to your inbox. Never
             miss a mission update again.
           </p>
 
-          <div className="mt-8 rounded-2xl border border-orange-500/60 bg-gradient-to-r from-orange-500/20 to-orange-600/10 px-6 py-4 text-orange-100">
-            <p className="text-base font-semibold tracking-wide flex items-center gap-2">
-              <span className="text-orange-400">⚠️</span>
-              CHECK YOUR <span className="text-orange-200 font-bold">SPAM</span> FOLDER
-            </p>
-            <p className="mt-2 text-sm leading-6 text-orange-50/90">
+          {/* Burnt Orange Temperature Check style warning */}
+          <div className="mt-8 rounded-2xl bg-[#ea580c]/20 border border-[#ea580c]/40 px-6 py-4 backdrop-blur-sm">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#ea580c] text-white text-xs font-bold">!</span>
+              <p className="text-sm uppercase tracking-wider font-semibold text-[#ea580c]">
+                CHECK YOUR <span className="text-white">SPAM</span> FOLDER
+              </p>
+            </div>
+            <p className="text-sm leading-6 text-white/80 ml-8">
               At this stage of the project, verification emails and weekly summaries
               will most likely land in SPAM—grab them and move us to your main
               inbox.
@@ -107,21 +111,22 @@ export default function Home() {
               autoComplete="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
-              className="w-full rounded-full border border-white/20 bg-white/10 backdrop-blur-sm px-6 py-4 text-base text-white placeholder:text-white/60 outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-400/40"
+              className="w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-6 py-4 text-base text-white placeholder:text-white/50 outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/40"
               required
               disabled={isLoading}
             />
             <button
               type="submit"
               disabled={isLoading}
-              className="inline-flex shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-4 text-base font-semibold text-white transition hover:from-blue-600 hover:to-purple-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 disabled:cursor-not-allowed disabled:opacity-60 shadow-lg shadow-blue-500/25"
+              className="inline-flex shrink-0 items-center justify-center rounded-2xl bg-gradient-to-r from-[#8b5cf6] to-[#4f46e5] px-8 py-4 text-base font-semibold text-white transition hover:from-[#7c3aed] hover:to-[#4338ca] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b5cf6] disabled:cursor-not-allowed disabled:opacity-60 shadow-lg"
+              style={{ boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)' }}
             >
               {isLoading ? "Joining..." : "Subscribe"}
             </button>
           </form>
 
           <p
-            className="mt-4 text-sm text-blue-200/80"
+            className="mt-4 text-sm text-white/60 font-mono"
             aria-live="polite"
             role="status"
           >

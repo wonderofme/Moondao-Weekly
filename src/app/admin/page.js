@@ -27,12 +27,12 @@ export default function AdminPage() {
       return "text-emerald-300";
     }
     if (status.tone === "error") {
-      return "text-orange-300";
+      return "text-[#ea580c]";
     }
     if (status.tone === "active") {
-      return "text-blue-300";
+      return "text-[#8b5cf6]";
     }
-    return "text-blue-200";
+    return "text-white/80";
   }, [status]);
 
   const handleUnlock = (event) => {
@@ -249,28 +249,29 @@ export default function AdminPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden">
-      {/* MoonDAO gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0a0e27] via-[#1e1b4b] to-[#312e81]" />
-      
-      {/* Organic shape overlay */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-blue-900/30 to-purple-900/30 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-gradient-to-br from-indigo-800/20 to-purple-800/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-gradient-to-br from-purple-900/25 to-blue-900/25 rounded-full blur-3xl" />
+    <div className="relative min-h-screen overflow-hidden bg-[#0B0B19]">
+      {/* Ambient red/orange glow at bottom right */}
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+        <div 
+          className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl"
+          style={{
+            background: 'radial-gradient(circle, rgba(234, 88, 12, 0.2) 0%, rgba(234, 88, 12, 0.1) 30%, transparent 70%)'
+          }}
+        />
       </div>
 
       <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-6 py-16">
-        <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] p-10 shadow-2xl backdrop-blur-xl">
+        {/* Hero Card with Royal Blue to Violet gradient */}
+        <section className="rounded-2xl bg-gradient-to-r from-[#1e3a8a] via-[#4f46e5] to-[#6366f1] p-10 shadow-2xl" style={{ boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
               <span className="text-2xl">🌙</span>
             </div>
-            <h1 className="text-3xl font-bold tracking-tight bg-gradient-to-r from-white via-blue-100 to-purple-100 bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold tracking-tight text-white">
               Mission Control
             </h1>
           </div>
-          <p className="mt-2 text-blue-100/90">
+          <p className="mt-2 text-white/90">
             Paste the latest MoonDAO Town Hall stream—or drop in the transcript—to generate and send the weekly recap.
           </p>
 
@@ -279,7 +280,7 @@ export default function AdminPage() {
               <div>
                 <label
                   htmlFor="adminPassword"
-                  className="block text-sm font-medium text-blue-200"
+                  className="block text-sm font-medium text-white/90"
                 >
                   Admin Password
                 </label>
@@ -288,14 +289,15 @@ export default function AdminPage() {
                   type="password"
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
-                  className="mt-2 w-full rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-3 text-base text-white placeholder:text-white/60 outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-400/40"
+                  className="mt-2 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 py-3 text-base text-white placeholder:text-white/50 outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/40"
                   placeholder="Enter password"
                   autoComplete="current-password"
                 />
               </div>
               <button
                 type="submit"
-                  className="inline-flex w-full items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-3 text-base font-semibold text-white transition hover:from-blue-600 hover:to-purple-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 shadow-lg shadow-blue-500/25"
+                  className="inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#8b5cf6] to-[#4f46e5] px-6 py-3 text-base font-semibold text-white transition hover:from-[#7c3aed] hover:to-[#4338ca] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b5cf6] shadow-lg"
+                  style={{ boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)' }}
               >
                 Unlock
               </button>
@@ -305,7 +307,7 @@ export default function AdminPage() {
               <div>
                 <label
                   htmlFor="summaryPreview"
-                  className="block text-sm font-medium text-blue-200"
+                  className="block text-sm font-medium text-white/90"
                 >
                   Summary Preview (editable)
                 </label>
@@ -314,7 +316,7 @@ export default function AdminPage() {
                   value={summaryPreview}
                   onChange={(event) => setSummaryPreview(event.target.value)}
                   rows={20}
-                  className="mt-2 w-full rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-3 text-base text-white font-mono outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-400/40"
+                  className="mt-2 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 py-3 text-base text-white font-mono outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/40"
                   placeholder="Summary will appear here..."
                 />
                 <p className="mt-2 text-xs text-slate-400">
@@ -325,7 +327,7 @@ export default function AdminPage() {
               <div>
                 <label
                   htmlFor="regeneratePrompt"
-                  className="block text-sm font-medium text-blue-200"
+                  className="block text-sm font-medium text-white/90"
                 >
                   Regenerate with Prompt
                 </label>
@@ -334,7 +336,7 @@ export default function AdminPage() {
                   type="text"
                   value={regeneratePrompt}
                   onChange={(event) => setRegeneratePrompt(event.target.value)}
-                  className="mt-2 w-full rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-3 text-base text-white placeholder:text-white/60 outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-400/40 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="mt-2 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 py-3 text-base text-white placeholder:text-white/50 outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/40 disabled:cursor-not-allowed disabled:opacity-60"
                   placeholder="e.g., 'Make it more concise' or 'Add more detail on proposals'"
                   disabled={isRegenerating}
                   onKeyDown={(e) => {
@@ -354,7 +356,8 @@ export default function AdminPage() {
                   type="button"
                   onClick={handleRegenerate}
                   disabled={isRegenerating || !regeneratePrompt.trim()}
-                  className="flex-1 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-purple-500 to-indigo-600 px-6 py-3 text-base font-semibold text-white transition hover:from-purple-600 hover:to-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-400 shadow-lg shadow-purple-500/25 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex-1 inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-[#8b5cf6] to-[#6366f1] px-6 py-3 text-base font-semibold text-white transition hover:from-[#7c3aed] hover:to-[#5b21b6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b5cf6] shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
+                  style={{ boxShadow: '0 10px 30px rgba(139, 92, 246, 0.3)' }}
                 >
                   {isRegenerating ? "Regenerating..." : "Regenerate with Prompt"}
                 </button>
@@ -362,7 +365,7 @@ export default function AdminPage() {
                   type="button"
                   onClick={handleCancelPreview}
                   disabled={isRegenerating || isSending}
-                  className="flex-1 inline-flex items-center justify-center rounded-full border border-white/30 bg-white/5 backdrop-blur-sm px-6 py-3 text-base font-semibold text-blue-200 transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex-1 inline-flex items-center justify-center rounded-2xl border border-white/30 bg-white/5 backdrop-blur-sm px-6 py-3 text-base font-semibold text-white/80 transition hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#8b5cf6] disabled:cursor-not-allowed disabled:opacity-60"
                 >
                   Cancel
                 </button>
@@ -372,7 +375,8 @@ export default function AdminPage() {
                 type="button"
                 onClick={handleSend}
                 disabled={isSending || !summaryPreview.trim()}
-                  className="w-full inline-flex items-center justify-center rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3 text-base font-semibold text-white transition hover:from-emerald-600 hover:to-teal-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 shadow-lg shadow-emerald-500/25 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="w-full inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3 text-base font-semibold text-white transition hover:from-emerald-600 hover:to-teal-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
+                  style={{ boxShadow: '0 10px 30px rgba(16, 185, 129, 0.3)' }}
               >
                 {isSending ? "Sending..." : "Send to Everyone"}
               </button>
@@ -387,14 +391,14 @@ export default function AdminPage() {
                   onChange={(event) => setUseManualTranscript(event.target.checked)}
                   disabled={isProcessing}
                 />
-                <span className="text-blue-200">Use manual transcript instead of downloading audio</span>
+                <span className="text-white/90">Use manual transcript instead of downloading audio</span>
               </label>
 
               {!useManualTranscript ? (
                 <div>
                   <label
                     htmlFor="youtubeUrl"
-                    className="block text-sm font-medium text-blue-200"
+                    className="block text-sm font-medium text-white/90"
                   >
                     MoonDAO Town Hall YouTube URL
                   </label>
@@ -403,7 +407,7 @@ export default function AdminPage() {
                     type="url"
                     value={youtubeUrl}
                     onChange={(event) => setYoutubeUrl(event.target.value)}
-                    className="mt-2 w-full rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-3 text-base text-white placeholder:text-white/60 outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-400/40 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mt-2 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 py-3 text-base text-white placeholder:text-white/50 outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/40 disabled:cursor-not-allowed disabled:opacity-60"
                     placeholder="https://www.youtube.com/watch?v=..."
                     disabled={isProcessing}
                   />
@@ -412,7 +416,7 @@ export default function AdminPage() {
                 <div>
                   <label
                     htmlFor="manualTranscript"
-                    className="block text-sm font-medium text-blue-200"
+                    className="block text-sm font-medium text-white/90"
                   >
                     Paste transcript text
                   </label>
@@ -421,11 +425,11 @@ export default function AdminPage() {
                     value={manualTranscript}
                     onChange={(event) => setManualTranscript(event.target.value)}
                     rows={12}
-                    className="mt-2 w-full rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm px-4 py-3 text-base text-white placeholder:text-white/60 outline-none transition focus:border-blue-400 focus:ring-2 focus:ring-blue-400/40 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mt-2 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 py-3 text-base text-white placeholder:text-white/50 outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/40 disabled:cursor-not-allowed disabled:opacity-60"
                     placeholder="Paste the full meeting transcript here..."
                     disabled={isProcessing}
                   />
-                  <p className="mt-2 text-xs text-blue-200/70">
+                  <p className="mt-2 text-xs text-white/60 font-mono">
                     Gemini will summarize exactly what you paste above.
                   </p>
                 </div>
@@ -441,8 +445,8 @@ export default function AdminPage() {
             </form>
           )}
 
-          <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6">
-            <p className="text-sm uppercase tracking-[0.25em] text-blue-300/70">
+          <div className="mt-10 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6" style={{ boxShadow: '0 10px 30px rgba(0, 0, 0, 0.3)' }}>
+            <p className="text-sm uppercase tracking-[0.25em] text-white/60 font-mono">
               Status
             </p>
             <p className={`mt-2 text-lg font-medium ${statusClasses}`}>
