@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #020617;
-  --foreground: #f8fafc;
+  --background: #0a0e27;
+  --foreground: #ffffff;
+  --moondao-blue: #1e3a8a;
+  --moondao-purple: #6366f1;
+  --moondao-orange: #f97316;
 }
 
 @theme inline {
@@ -14,6 +17,7 @@
 
 body {
   min-height: 100vh;
-  background-color: var(--background);
+  background: linear-gradient(135deg, #0a0e27 0%, #1e1b4b 50%, #312e81 100%);
+  background-attachment: fixed;
   color: var(--foreground);
 }
