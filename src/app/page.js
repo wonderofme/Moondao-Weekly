@@ -50,8 +50,8 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0B0B19]">
-      {/* Ambient red/orange glow - bottom ~35% of background - deeper Mars red/orange */}
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[40vh] z-0">
+      {/* Ambient red/orange glow - bottom ~30% of background - deeper Mars red/orange */}
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] z-0">
         <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-[#7c2d12]/80 via-[#7c2d12]/20 to-transparent blur-3xl" />
       </div>
 
