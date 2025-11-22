@@ -27,8 +27,8 @@ An automated tool that generates and sends weekly Town Hall summaries using AI. 
 
 ### 1. Clone & Install
 ```bash
-git clone <your-repo-url>
-cd moondao-weekly
+git clone https://github.com/wonderofme/Moondao-Weekly.git
+cd Moondao-Weekly
 npm install
 ```
 
