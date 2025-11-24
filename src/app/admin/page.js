@@ -110,8 +110,14 @@ export default function AdminPage() {
       }
 
       // Store transcript and summary, enter preview mode
-      setOriginalTranscript(data.transcript || "");
-      setSummaryPreview(data.summary || "");
+      const transcript = data.transcript || "";
+      const summary = data.summary || "";
+      
+      console.log("Received transcript length:", transcript.length);
+      console.log("Received summary length:", summary.length);
+      
+      setOriginalTranscript(transcript);
+      setSummaryPreview(summary);
       setShowTranscript(true);
       setIsPreviewMode(true);
       setStatus({
@@ -370,25 +376,23 @@ export default function AdminPage() {
                 </button>
               </div>
 
-              {originalTranscript && (
-                <div className="mt-6">
-                  <label className="block text-sm font-medium text-white/90 mb-2">
-                    Full Transcript
-                  </label>
-                  <div className="mt-2 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-4">
-                    <textarea
-                      readOnly
-                      value={originalTranscript}
-                      rows={15}
-                      className="w-full rounded-xl border border-white/10 bg-black/20 backdrop-blur-sm px-4 py-3 text-sm text-white/90 font-mono outline-none resize-none overflow-y-auto"
-                      style={{ maxHeight: "400px" }}
-                    />
-                    <p className="mt-2 text-xs text-slate-400">
-                      Full transcript from the Town Hall. This is for reference only and won't be sent to subscribers.
-                    </p>
-                  </div>
+              <div className="mt-6">
+                <label className="block text-sm font-medium text-white/90 mb-2">
+                  Full Transcript {originalTranscript ? `(${originalTranscript.length} characters)` : "(not available)"}
+                </label>
+                <div className="mt-2 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-4">
+                  <textarea
+                    readOnly
+                    value={originalTranscript || "Transcript will appear here once processing is complete..."}
+                    rows={15}
+                    className="w-full rounded-xl border border-white/10 bg-black/20 backdrop-blur-sm px-4 py-3 text-sm text-white/90 font-mono outline-none resize-none overflow-y-auto"
+                    style={{ maxHeight: "400px" }}
+                  />
+                  <p className="mt-2 text-xs text-slate-400">
+                    Full transcript from the Town Hall. This is for reference only and won't be sent to subscribers.
+                  </p>
                 </div>
-              )}
+              </div>
 
               <button
                 type="button"
