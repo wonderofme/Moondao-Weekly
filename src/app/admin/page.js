@@ -100,11 +100,34 @@ export default function AdminPage() {
         body: JSON.stringify(payload),
       });
 
-      const data = await response.json();
+      // Check if response has content before parsing JSON
+      const contentType = response.headers.get("content-type");
+      const text = await response.text();
+      
+      let data = {};
+      if (text && contentType && contentType.includes("application/json")) {
+        try {
+          data = JSON.parse(text);
+        } catch (parseError) {
+          console.error("Failed to parse JSON response:", parseError);
+          setStatus({
+            label: `Server error: Invalid response format. Response: ${text.substring(0, 200)}`,
+            tone: "error",
+          });
+          return;
+        }
+      } else if (text) {
+        // Response is not JSON, show the text
+        setStatus({
+          label: `Server error: ${text.substring(0, 200)}`,
+          tone: "error",
+        });
+        return;
+      }
 
       if (!response.ok) {
         const errorMessage =
-          data?.error || "The automation failed. Check the Vercel logs for details.";
+          data?.error || text || "The automation failed. Check the Vercel logs for details.";
         setStatus({ label: errorMessage, tone: "error" });
         return;
       }
@@ -169,11 +192,33 @@ export default function AdminPage() {
         }),
       });
 
-      const data = await response.json();
+      // Check if response has content before parsing JSON
+      const contentType = response.headers.get("content-type");
+      const text = await response.text();
+      
+      let data = {};
+      if (text && contentType && contentType.includes("application/json")) {
+        try {
+          data = JSON.parse(text);
+        } catch (parseError) {
+          console.error("Failed to parse JSON response:", parseError);
+          setStatus({
+            label: `Server error: Invalid response format. Response: ${text.substring(0, 200)}`,
+            tone: "error",
+          });
+          return;
+        }
+      } else if (text) {
+        setStatus({
+          label: `Server error: ${text.substring(0, 200)}`,
+          tone: "error",
+        });
+        return;
+      }
 
       if (!response.ok) {
         const errorMessage =
-          data?.error || "Failed to regenerate summary. Check the Vercel logs for details.";
+          data?.error || text || "Failed to regenerate summary. Check the Vercel logs for details.";
         setStatus({ label: errorMessage, tone: "error" });
         return;
       }
@@ -220,11 +265,33 @@ export default function AdminPage() {
         }),
       });
 
-      const data = await response.json();
+      // Check if response has content before parsing JSON
+      const contentType = response.headers.get("content-type");
+      const text = await response.text();
+      
+      let data = {};
+      if (text && contentType && contentType.includes("application/json")) {
+        try {
+          data = JSON.parse(text);
+        } catch (parseError) {
+          console.error("Failed to parse JSON response:", parseError);
+          setStatus({
+            label: `Server error: Invalid response format. Response: ${text.substring(0, 200)}`,
+            tone: "error",
+          });
+          return;
+        }
+      } else if (text) {
+        setStatus({
+          label: `Server error: ${text.substring(0, 200)}`,
+          tone: "error",
+        });
+        return;
+      }
 
       if (!response.ok) {
         const errorMessage =
-          data?.error || "Failed to send summary. Check the Vercel logs for details.";
+          data?.error || text || "Failed to send summary. Check the Vercel logs for details.";
         setStatus({ label: errorMessage, tone: "error" });
         return;
       }
