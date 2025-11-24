@@ -64,8 +64,8 @@ export default function Home() {
               <span className="text-2xl">🌙</span>
             </div>
             <p className="text-sm uppercase tracking-[0.3em] text-white/80 font-semibold">
-              MoonDAO Weekly
-            </p>
+            MoonDAO Weekly
+          </p>
           </div>
           
           <h1 className="text-5xl font-bold leading-tight sm:text-6xl text-white mb-4">
