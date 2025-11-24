@@ -123,7 +123,7 @@ class handler(BaseHTTPRequestHandler):
     if not manual_transcript:
       if not youtube_url or not isinstance(youtube_url, str) or not youtube_url.strip():
         respond(self, 400, {"error": "Provide a YouTube URL or a manual transcript."})
-      return
+        return
       youtube_url = youtube_url.strip()
     elif isinstance(youtube_url, str):
       youtube_url = youtube_url.strip()
@@ -140,30 +140,30 @@ class handler(BaseHTTPRequestHandler):
         if not ASSEMBLY_KEY:
           raise RuntimeError("AssemblyAI API key is required for automatic transcription.")
 
-      ydl_opts = {
-          "format": "bestaudio/best",
-          "outtmpl": os.path.join(temp_dir, "moondao-townhall.%(ext)s"),
-          "noplaylist": True,
-          "quiet": True,
-          "no_warnings": True,
-      }
-      if YTDLP_COOKIES_BASE64 or YTDLP_COOKIES:
-        cookie_path = os.path.join(temp_dir, "yt_cookies.txt")
-        try:
-          if YTDLP_COOKIES_BASE64:
-            decoded = base64.b64decode(YTDLP_COOKIES_BASE64).decode("utf-8")
-            cookies_content = decoded
-          else:
-            cookies_content = YTDLP_COOKIES
+        ydl_opts = {
+            "format": "bestaudio/best",
+            "outtmpl": os.path.join(temp_dir, "moondao-townhall.%(ext)s"),
+            "noplaylist": True,
+            "quiet": True,
+            "no_warnings": True,
+        }
+        if YTDLP_COOKIES_BASE64 or YTDLP_COOKIES:
+          cookie_path = os.path.join(temp_dir, "yt_cookies.txt")
+          try:
+            if YTDLP_COOKIES_BASE64:
+              decoded = base64.b64decode(YTDLP_COOKIES_BASE64).decode("utf-8")
+              cookies_content = decoded
+            else:
+              cookies_content = YTDLP_COOKIES
 
-          with open(cookie_path, "w", encoding="utf-8") as cookie_file:
-            cookie_file.write(cookies_content)
+            with open(cookie_path, "w", encoding="utf-8") as cookie_file:
+              cookie_file.write(cookies_content)
 
-          ydl_opts["cookiefile"] = cookie_path
-        except Exception as error:
-          raise RuntimeError("Failed to load YouTube cookies") from error
+            ydl_opts["cookiefile"] = cookie_path
+          except Exception as error:
+            raise RuntimeError("Failed to load YouTube cookies") from error
 
-      with YoutubeDL(ydl_opts) as ydl:
+        with YoutubeDL(ydl_opts) as ydl:
           download_info = ydl.extract_info(youtube_url, download=True)
           if not download_info:
             raise RuntimeError("Unable to download audio from YouTube.")
@@ -174,24 +174,24 @@ class handler(BaseHTTPRequestHandler):
           if not audio_path or not os.path.exists(audio_path):
             raise RuntimeError("Downloaded audio file not found.")
 
-      headers = {"authorization": ASSEMBLY_KEY}
-      upload_response = requests.post(
-        "https://api.assemblyai.com/v2/upload",
-        headers=headers,
-        data=stream_file(audio_path),
-      )
-      upload_response.raise_for_status()
-      upload_url = upload_response.json()["upload_url"]
+        headers = {"authorization": ASSEMBLY_KEY}
+        upload_response = requests.post(
+          "https://api.assemblyai.com/v2/upload",
+          headers=headers,
+          data=stream_file(audio_path),
+        )
+        upload_response.raise_for_status()
+        upload_url = upload_response.json()["upload_url"]
 
-      transcript_response = requests.post(
-        "https://api.assemblyai.com/v2/transcript",
-        json={"audio_url": upload_url},
-        headers=headers,
-      )
-      transcript_response.raise_for_status()
-      transcript_id = transcript_response.json()["id"]
+        transcript_response = requests.post(
+          "https://api.assemblyai.com/v2/transcript",
+          json={"audio_url": upload_url},
+          headers=headers,
+        )
+        transcript_response.raise_for_status()
+        transcript_id = transcript_response.json()["id"]
 
-      transcript_text = self._poll_transcription(transcript_id, headers)
+        transcript_text = self._poll_transcription(transcript_id, headers)
 
       summary = self._summarize_transcript(transcript_text)
 
@@ -211,12 +211,12 @@ class handler(BaseHTTPRequestHandler):
         )
       else:
         # Send email immediately (backward compatibility)
-      self._send_email(summary)
-      respond(
-        self,
-        200,
-        {"status": "Success", "summary": summary},
-      )
+        self._send_email(summary)
+        respond(
+          self,
+          200,
+          {"status": "Success", "summary": summary},
+        )
     except Exception as error:
       traceback.print_exc()
       respond(self, 500, {"error": str(error)})
