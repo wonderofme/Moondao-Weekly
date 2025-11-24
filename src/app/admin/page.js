@@ -21,6 +21,7 @@ export default function AdminPage() {
   const [regeneratePrompt, setRegeneratePrompt] = useState("");
   const [isRegenerating, setIsRegenerating] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [showTranscript, setShowTranscript] = useState(false);
 
   const statusClasses = useMemo(() => {
     if (status.tone === "success") {
@@ -111,6 +112,7 @@ export default function AdminPage() {
       // Store transcript and summary, enter preview mode
       setOriginalTranscript(data.transcript || "");
       setSummaryPreview(data.summary || "");
+      setShowTranscript(true);
       setIsPreviewMode(true);
       setStatus({
         label: "Summary generated! Review and edit before sending.",
@@ -121,7 +123,7 @@ export default function AdminPage() {
       if (useManualTranscript) {
         setManualTranscript("");
       } else {
-        setYoutubeUrl("");
+      setYoutubeUrl("");
       }
     } catch (error) {
       setStatus({
@@ -226,6 +228,7 @@ export default function AdminPage() {
       setSummaryPreview("");
       setOriginalTranscript("");
       setRegeneratePrompt("");
+      setShowTranscript(false);
       setStatus({
         label: "Success! Summary sent to all subscribers.",
         tone: "success",
@@ -245,6 +248,7 @@ export default function AdminPage() {
     setSummaryPreview("");
     setOriginalTranscript("");
     setRegeneratePrompt("");
+    setShowTranscript(false);
     setStatus(initialStatus);
   };
 
@@ -263,8 +267,8 @@ export default function AdminPage() {
               <span className="text-2xl">🌙</span>
             </div>
             <h1 className="text-3xl font-bold tracking-tight text-white">
-              Mission Control
-            </h1>
+            Mission Control
+          </h1>
           </div>
           <p className="mt-2 text-white/90">
             Paste the latest MoonDAO Town Hall stream—or drop in the transcript—to generate and send the weekly recap.
@@ -366,6 +370,26 @@ export default function AdminPage() {
                 </button>
               </div>
 
+              {originalTranscript && (
+                <div className="mt-6">
+                  <label className="block text-sm font-medium text-white/90 mb-2">
+                    Full Transcript
+                  </label>
+                  <div className="mt-2 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm p-4">
+                    <textarea
+                      readOnly
+                      value={originalTranscript}
+                      rows={15}
+                      className="w-full rounded-xl border border-white/10 bg-black/20 backdrop-blur-sm px-4 py-3 text-sm text-white/90 font-mono outline-none resize-none overflow-y-auto"
+                      style={{ maxHeight: "400px" }}
+                    />
+                    <p className="mt-2 text-xs text-slate-400">
+                      Full transcript from the Town Hall. This is for reference only and won't be sent to subscribers.
+                    </p>
+                  </div>
+                </div>
+              )}
+
               <button
                 type="button"
                 onClick={handleSend}
@@ -390,23 +414,23 @@ export default function AdminPage() {
               </label>
 
               {!useManualTranscript ? (
-                <div>
-                  <label
-                    htmlFor="youtubeUrl"
+              <div>
+                <label
+                  htmlFor="youtubeUrl"
                     className="block text-sm font-medium text-white/90"
-                  >
-                    MoonDAO Town Hall YouTube URL
-                  </label>
-                  <input
-                    id="youtubeUrl"
-                    type="url"
-                    value={youtubeUrl}
-                    onChange={(event) => setYoutubeUrl(event.target.value)}
+                >
+                  MoonDAO Town Hall YouTube URL
+                </label>
+                <input
+                  id="youtubeUrl"
+                  type="url"
+                  value={youtubeUrl}
+                  onChange={(event) => setYoutubeUrl(event.target.value)}
                     className="mt-2 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm px-4 py-3 text-base text-white placeholder:text-white/50 outline-none transition focus:border-[#8b5cf6] focus:ring-2 focus:ring-[#8b5cf6]/40 disabled:cursor-not-allowed disabled:opacity-60"
-                    placeholder="https://www.youtube.com/watch?v=..."
-                    disabled={isProcessing}
-                  />
-                </div>
+                  placeholder="https://www.youtube.com/watch?v=..."
+                  disabled={isProcessing}
+                />
+              </div>
               ) : (
                 <div>
                   <label
