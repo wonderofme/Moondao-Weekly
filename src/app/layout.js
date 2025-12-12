@@ -12,9 +12,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "MoonDAO Weekly Summaries",
+  title: "Video Recap Generator",
   description:
-    "Subscribe for automated MoonDAO Town Hall summaries delivered to your inbox.",
+    "AI-powered video summarization tool. Transcribe and summarize any YouTube video with intelligent AI-generated recaps.",
 };
 
 export default function RootLayout({ children }) {

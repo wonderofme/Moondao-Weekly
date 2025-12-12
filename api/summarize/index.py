@@ -142,7 +142,7 @@ class handler(BaseHTTPRequestHandler):
 
         ydl_opts = {
             "format": "bestaudio/best",
-            "outtmpl": os.path.join(temp_dir, "moondao-townhall.%(ext)s"),
+            "outtmpl": os.path.join(temp_dir, "video-recap.%(ext)s"),
             "noplaylist": True,
             "quiet": True,
             "no_warnings": True,
@@ -255,12 +255,12 @@ class handler(BaseHTTPRequestHandler):
 
   def _summarize_transcript(self, transcript_text: str) -> str:
     prompt = """
-You are a professional summarizer for a space DAO.
-Create a clean, markdown-formatted summary of the MoonDAO Town Hall transcript focusing on:
-1. Urgent deadlines and action items.
-2. New proposals (names, goals, status).
-3. Key project updates from Senators.
-4. Guest speakers or upcoming events.
+You are a professional video content summarizer.
+Create a clean, markdown-formatted summary of the video transcript focusing on:
+1. Key topics and main points discussed.
+2. Important announcements or updates.
+3. Action items or next steps mentioned.
+4. Notable quotes or insights.
 Keep it concise, use bullet points where appropriate, and include section headings.
 """
 
@@ -290,14 +290,14 @@ Keep it concise, use bullet points where appropriate, and include section headin
 
     html_summary = (
       "<html><body style='font-family:Inter,Arial,sans-serif; color:#111827;'>"
-      "<h2 style='margin-top:0;'>MoonDAO Town Hall Summary</h2>"
+      "<h2 style='margin-top:0;'>Video Summary</h2>"
       f"{html_body}"
       "</body></html>"
     )
 
     payload = {
       "api_secret": KIT_API_SECRET,
-      "subject": "🚀 MoonDAO Weekly Recap",
+      "subject": "📹 Video Recap",
       "content": html_summary,
       "public": True,
       "send_to_form_ids": [form_id_value],

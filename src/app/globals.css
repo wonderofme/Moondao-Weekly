@@ -3,13 +3,13 @@
 :root {
   --background: #0B0B19;
   --foreground: #ffffff;
-  --moondao-midnight: #0B0B19;
-  --moondao-royal-blue: #1e3a8a;
-  --moondao-violet: #6366f1;
-  --moondao-electric-purple: #8b5cf6;
-  --moondao-indigo: #4f46e5;
-  --moondao-burnt-orange: #ea580c;
-  --moondao-muted-gray: #64748b;
+  --color-midnight: #0B0B19;
+  --color-royal-blue: #1e3a8a;
+  --color-violet: #6366f1;
+  --color-electric-purple: #8b5cf6;
+  --color-indigo: #4f46e5;
+  --color-accent-orange: #ea580c;
+  --color-muted-gray: #64748b;
 }
 
 @theme inline {

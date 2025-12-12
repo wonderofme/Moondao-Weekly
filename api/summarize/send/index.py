@@ -44,14 +44,14 @@ def _send_email(summary: str) -> None:
 
   html_summary = (
     "<html><body style='font-family:Inter,Arial,sans-serif; color:#111827;'>"
-    "<h2 style='margin-top:0;'>MoonDAO Town Hall Summary</h2>"
+    "<h2 style='margin-top:0;'>Video Summary</h2>"
     f"{html_body}"
     "</body></html>"
   )
 
   payload = {
     "api_secret": KIT_API_SECRET,
-    "subject": "🚀 MoonDAO Weekly Recap",
+    "subject": "📹 Video Recap",
     "content": html_summary,
     "public": True,
     "send_to_form_ids": [form_id_value],

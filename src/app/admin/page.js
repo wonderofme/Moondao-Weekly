@@ -70,7 +70,7 @@ export default function AdminPage() {
     setStatus({
       label: useManualTranscript
         ? "Summarizing manual transcript..."
-        : "Sending request to mission control...",
+        : "Sending request...",
       tone: "active",
     });
 
@@ -113,7 +113,7 @@ export default function AdminPage() {
           setStatus({
             label: `Server error: Invalid response format. Response: ${text.substring(0, 200)}`,
             tone: "error",
-          });
+      });
           return;
         }
       } else if (text) {
@@ -337,14 +337,14 @@ export default function AdminPage() {
         <section className="rounded-2xl bg-[#0f172a]/80 backdrop-blur-xl border border-white/10 p-10 shadow-2xl" style={{ boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
-              <span className="text-2xl">🌙</span>
+              <span className="text-2xl">🎬</span>
             </div>
             <h1 className="text-3xl font-bold tracking-tight text-white">
-            Mission Control
+            Admin Panel
           </h1>
           </div>
           <p className="mt-2 text-white/90">
-            Paste the latest MoonDAO Town Hall stream—or drop in the transcript—to generate and send the weekly recap.
+            Paste a YouTube URL or drop in a transcript to generate and send a video summary.
           </p>
 
           {!isUnlocked ? (
@@ -456,7 +456,7 @@ export default function AdminPage() {
                     style={{ maxHeight: "400px" }}
                   />
                   <p className="mt-2 text-xs text-slate-400">
-                    Full transcript from the Town Hall. This is for reference only and won't be sent to subscribers.
+                    Full transcript from the video. This is for reference only and won't be sent to subscribers.
                   </p>
                 </div>
               </div>
@@ -490,7 +490,7 @@ export default function AdminPage() {
                   htmlFor="youtubeUrl"
                     className="block text-sm font-medium text-white/90"
                 >
-                  MoonDAO Town Hall YouTube URL
+                  YouTube Video URL
                 </label>
                 <input
                   id="youtubeUrl"

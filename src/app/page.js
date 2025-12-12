@@ -16,7 +16,7 @@ export default function Home() {
       return;
     }
 
-    setStatus({ state: "loading", message: "Adding you to the crew..." });
+    setStatus({ state: "loading", message: "Subscribing..." });
 
     try {
       const response = await fetch("/api/subscribe", {
@@ -50,44 +50,43 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-[#0B0B19]">
-      {/* Ambient red/orange glow - bottom ~30% of background - deeper Mars red/orange */}
+      {/* Ambient blue/purple glow - bottom ~30% of background */}
       <div className="pointer-events-none fixed inset-x-0 bottom-0 h-[30vh] z-0">
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-[#7c2d12]/80 via-[#7c2d12]/20 to-transparent blur-3xl" />
+        <div className="absolute inset-0 w-full h-full bg-gradient-to-t from-[#4f46e5]/60 via-[#6366f1]/20 to-transparent blur-3xl" />
       </div>
 
       <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-4xl flex-col justify-center px-6 py-16">
         {/* Main Content Card - Dark Mode style matching the "Abstract" section */}
         <section className="rounded-2xl bg-[#0f172a]/80 backdrop-blur-xl border border-white/10 p-10 shadow-2xl" style={{ boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)' }}>
-          {/* MoonDAO branding */}
+          {/* Video Recap Generator branding */}
           <div className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
-              <span className="text-2xl">🌙</span>
+              <span className="text-2xl">🎬</span>
             </div>
             <p className="text-sm uppercase tracking-[0.3em] text-white/80 font-semibold">
-            MoonDAO Weekly
+            Video Recap Generator
           </p>
           </div>
           
           <h1 className="text-5xl font-bold leading-tight sm:text-6xl text-white mb-4">
-            Get Weekly MoonDAO Summaries
+            AI-Powered Video Summaries
           </h1>
           <p className="text-lg text-white/90 leading-relaxed">
-            AI-powered recaps of the Town Hall, straight to your inbox. Never
-            miss a mission update again.
+            AI-powered recaps of any video, straight to your inbox. Never
+            miss important content again.
           </p>
 
-          {/* Burnt Orange Temperature Check style warning */}
-          <div className="mt-8 rounded-2xl bg-[#ea580c]/20 border border-[#ea580c]/40 px-6 py-4 backdrop-blur-sm">
+          {/* Warning notice */}
+          <div className="mt-8 rounded-2xl bg-[#6366f1]/20 border border-[#6366f1]/40 px-6 py-4 backdrop-blur-sm">
             <div className="flex items-center gap-2 mb-2">
-              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#ea580c] text-white text-xs font-bold">!</span>
-              <p className="text-sm uppercase tracking-wider font-semibold text-[#ea580c]">
+              <span className="inline-flex items-center justify-center w-6 h-6 rounded-full bg-[#6366f1] text-white text-xs font-bold">!</span>
+              <p className="text-sm uppercase tracking-wider font-semibold text-[#6366f1]">
                 CHECK YOUR <span className="text-white">SPAM</span> FOLDER
               </p>
             </div>
             <p className="text-sm leading-6 text-white/80 ml-8">
-              At this stage of the project, verification emails and weekly summaries
-              will most likely land in SPAM—grab them and move us to your main
-              inbox.
+              Verification emails and video summaries may land in your spam folder.
+              Please check and move them to your main inbox.
             </p>
           </div>
 

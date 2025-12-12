@@ -101,7 +101,7 @@ class handler(BaseHTTPRequestHandler):
     try:
       # Build regeneration prompt
       regeneration_prompt = f"""
-You are a professional summarizer for a space DAO.
+You are a professional video content summarizer.
 You previously created this summary:
 
 {current_summary}
@@ -110,10 +110,10 @@ The user now wants you to modify it with this instruction: {user_prompt.strip()}
 
 Based on the original transcript below, regenerate the summary according to the user's request.
 Maintain the markdown formatting and focus on:
-1. Urgent deadlines and action items.
-2. New proposals (names, goals, status).
-3. Key project updates from Senators.
-4. Guest speakers or upcoming events.
+1. Key topics and main points discussed.
+2. Important announcements or updates.
+3. Action items or next steps mentioned.
+4. Notable quotes or insights.
 
 Original transcript:
 {original_transcript}
